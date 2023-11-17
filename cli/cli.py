@@ -1,3 +1,5 @@
+from utils import clear_screen
+
 class SimpleCLI:
     def __init__(self):
         self.commands = {}
@@ -8,6 +10,7 @@ class SimpleCLI:
     def run(self):
         while True:
             command = input("Enter a command: ")
+            clear_screen()
             if command == "quit":
                 print("Goodbye!")
                 break
