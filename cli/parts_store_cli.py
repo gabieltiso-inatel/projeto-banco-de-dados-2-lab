@@ -11,15 +11,15 @@ class PartsStoreCLI(SimpleCLI):
         self.distribution_center_model = distribution_center_model
         self.parts_model = parts_model
 
-        self.add_command("create_parts_store", self.create_parts_store)
-        self.add_command("get_all_parts_stores", self.get_all_parts_stores)
-        self.add_command("get_parts_store_by_name", self.get_parts_store_by_name)
-        self.add_command("update_parts_store_city", self.update_parts_store_city)
-        self.add_command("update_parts_store_delivers", self.update_parts_store_delivers)
-        self.add_command("update_parts_store_rating", self.update_parts_store_rating)
-        self.add_command("delete_parts_store", self.delete_parts_store)
-        self.add_command("create_buys_from_dc_rel", self.create_buys_from_dc_rel)
-        self.add_command("create_sells_part_rel", self.create_sells_part_rel)
+        self.add_command(("create_parts_store", self.create_parts_store))
+        self.add_command(("get_all_parts_stores", self.get_all_parts_stores))
+        self.add_command(("get_parts_store_by_name", self.get_parts_store_by_name))
+        self.add_command(("update_parts_store_city", self.update_parts_store_city))
+        self.add_command(("update_parts_store_delivers", self.update_parts_store_delivers))
+        self.add_command(("update_parts_store_rating", self.update_parts_store_rating))
+        self.add_command(("delete_parts_store", self.delete_parts_store))
+        self.add_command(("create_buys_from_dc_rel", self.create_buys_from_dc_rel))
+        self.add_command(("create_sells_part_rel", self.create_sells_part_rel))
 
     def create_parts_store(self):
         name = input("Enter PartsStore name: ")
@@ -81,5 +81,4 @@ class PartsStoreCLI(SimpleCLI):
 
     def run(self):
         print("Welcome to the Parts Store CLI!")
-        print("Available commands: create_parts_store, get_all_parts_stores, get_parts_store_by_name, update_parts_store_city, update_parts_store_delivers, update_parts_store_rating, delete_parts_store, create_buys_from_dc_rel, create_sells_part_rel, quit")
         super().run()

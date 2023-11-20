@@ -9,14 +9,14 @@ class DistributionCenterCLI(SimpleCLI):
         self.distribution_center_model = distribution_center_model
         self.parts_model = parts_model
 
-        self.add_command("create_distribution_center", self.create_distribution_center)
-        self.add_command("get_all_distribution_centers", self.get_all_distribution_centers)
-        self.add_command("get_all_distribution_centers_by_city", self.get_all_distribution_centers_by_city)
-        self.add_command("get_distribution_center_by_name", self.get_distribution_center_by_name)
-        self.add_command("update_distribution_center_city", self.update_distribution_center_city)
-        self.add_command("update_distribution_center_average_delivery_time", self.update_distribution_center_average_delivery_time)
-        self.add_command("delete_distribution_center", self.delete_distribution_center)
-        self.add_command("create_stores_part_rel", self.create_stores_part_rel)
+        self.add_command(("create_distribution_center", self.create_distribution_center))
+        self.add_command(("get_all_distribution_centers", self.get_all_distribution_centers))
+        self.add_command(("get_all_distribution_centers_by_city", self.get_all_distribution_centers_by_city))
+        self.add_command(("get_distribution_center_by_name", self.get_distribution_center_by_name))
+        self.add_command(("update_distribution_center_city", self.update_distribution_center_city))
+        self.add_command(("update_distribution_center_average_delivery_time", self.update_distribution_center_average_delivery_time))
+        self.add_command(("delete_distribution_center", self.delete_distribution_center))
+        self.add_command(("create_stores_part_rel", self.create_stores_part_rel))
 
     def create_distribution_center(self):
         name = input("Enter DistributionCenter name: ")
@@ -71,6 +71,5 @@ class DistributionCenterCLI(SimpleCLI):
 
     def run(self):
         print("Welcome to the Distribution Center CLI!")
-        print("Available commands: create_distribution_center, get_all_distribution_centers, get_all_distribution_centers_by_city, get_distribution_center_by_name, update_distribution_center_city, update_distribution_center_average_delivery_time, delete_distribution_center, create_stores_part_rel, quit")
         super().run()
 

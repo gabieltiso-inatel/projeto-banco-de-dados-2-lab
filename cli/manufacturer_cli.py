@@ -9,15 +9,15 @@ class ManufacturerCLI(SimpleCLI):
         self.manufacturer_model = manufacturer_model
         self.parts_model = parts_model
 
-        self.add_command("create_manufacturer", self.create_manufacturer)
-        self.add_command("get_all_manufacturers", self.get_all_manufacturers)
-        self.add_command("get_all_manufacturer_by_city", self.get_all_manufacturer_by_city)
-        self.add_command("get_manufacturer_by_name", self.get_manufacturer_by_name)
-        self.add_command("update_manufacturer_city", self.update_manufacturer_city)
-        self.add_command("update_manufacturer_year_of_foundation", self.update_manufacturer_year_of_foundation)
-        self.add_command("update_manufacturer_telephone", self.update_manufacturer_telephone)
-        self.add_command("delete_manufacturer", self.delete_manufacturer)
-        self.add_command("create_produces_part_rel", self.create_produces_part_rel)
+        self.add_command(("create_manufacturer", self.create_manufacturer))
+        self.add_command(("get_all_manufacturers", self.get_all_manufacturers))
+        self.add_command(("get_all_manufacturer_by_city", self.get_all_manufacturer_by_city))
+        self.add_command(("get_manufacturer_by_name", self.get_manufacturer_by_name))
+        self.add_command(("update_manufacturer_city", self.update_manufacturer_city))
+        self.add_command(("update_manufacturer_year_of_foundation", self.update_manufacturer_year_of_foundation))
+        self.add_command(("update_manufacturer_telephone", self.update_manufacturer_telephone))
+        self.add_command(("delete_manufacturer", self.delete_manufacturer))
+        self.add_command(("create_produces_part_rel", self.create_produces_part_rel))
 
     def create_manufacturer(self):
         name = input("Enter Manufacturer name: ")
@@ -80,5 +80,4 @@ class ManufacturerCLI(SimpleCLI):
 
     def run(self):
         print("Welcome to the Manufacturer CLI!")
-        print("Available commands: create_manufacturer, get_all_manufacturers, get_all_manufacturer_by_city, get_manufacturer_by_name, update_manufacturer_city, update_manufacturer_year_of_foundation, update_manufacturer_telephone, delete_manufacturer, create_produces_part_rel, quit")
         super().run()

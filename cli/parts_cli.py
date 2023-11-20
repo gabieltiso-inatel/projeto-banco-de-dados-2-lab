@@ -6,13 +6,13 @@ class PartsCLI(SimpleCLI):
     def __init__(self, parts_model: Part):
         super().__init__()
         self.parts_model = parts_model
-        self.add_command("create", self.create_part)
-        self.add_command("read_all", self.read_all_parts)
-        self.add_command("read_by_name", self.read_part_by_name)
-        self.add_command("update_price", self.update_part_price)
-        self.add_command("update_weight", self.update_part_weight)
-        self.add_command("update_volume", self.update_part_volume)
-        self.add_command("delete", self.delete_part)
+        self.add_command(("create", self.create_part))
+        self.add_command(("read_all", self.read_all_parts))
+        self.add_command(("read_by_name", self.read_part_by_name))
+        self.add_command(("update_price", self.update_part_price))
+        self.add_command(("update_weight", self.update_part_weight))
+        self.add_command(("update_volume", self.update_part_volume))
+        self.add_command(("delete", self.delete_part))
 
     def create_part(self):
         name = input("Enter Part name: ")
@@ -62,5 +62,4 @@ class PartsCLI(SimpleCLI):
 
     def run(self):
         print("Welcome to the Parts CLI!")
-        print("Available commands: create, read_all, read_by_name, update_price, update_weight, update_volume, delete, quit")
         super().run()

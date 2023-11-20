@@ -17,37 +17,42 @@ from models.part import Part
 
 def main():
     load_dotenv()
-    clear_screen()
-    print("""
-Welcome to the car parts analyser program!
-This project allows you to interact with four main entities 
-in a Graph Database (Neo4j):
+    #clear_screen()
+    #print("""
+###############################################################
+#Welcome to the car parts analyser program!
+#This project allows you to interact with four main entities 
+#in a Graph Database (Neo4j):
 
-- Manufacturer
-- DistributionCenter
-- PartsStore
-- Part
+#- Manufacturer
+#- DistributionCenter
+#- PartsStore
+#- Part
 
-You can choose between the entities, and apply all kinds 
-of CRUD operations on all of them.
-    """)
+#You can choose between the entities, and apply all kinds 
+#of CRUD operations on all of them.
+###############################################################
+#""")
+
+    db_uri = os.getenv("DB_URI")
+    db_user = os.getenv("DB_USER")
+    db_password = os.getenv("DB_PASSWORD")
+    database = Database(db_uri, db_user, db_password)
+    database.drop_all()
 
     while True:
-        choice = input("""
-    Choose between one of the models to apply the CRUD operations:
-    1) Manufacturer
-    2) DistributionCenter
-    3) PartsStore
-    4) Part
-
-    Or press 5 to exit!
-        """)
         clear_screen()
+        choice = input("""
+##############################################################
+Choose between one of the models to apply the CRUD operations:
+1) Manufacturer
+2) DistributionCenter
+3) PartsStore
+4) Part
 
-        db_uri = os.getenv("DB_URI")
-        db_user = os.getenv("DB_USER")
-        db_password = os.getenv("DB_PASSWORD")
-        database = Database(db_uri, db_user, db_password)
+Or press 5 to exit!
+##############################################################
+""")
 
         cli: SimpleCLI | None = None
         if choice == "1":
@@ -76,9 +81,12 @@ of CRUD operations on all of them.
             break
         else:
             print("This number doesn't correspond to a valid operation!")
+            continue
 
         if cli:
             cli.run()
+
+        clear_screen()
 
 if __name__ == "__main__":
     main()
