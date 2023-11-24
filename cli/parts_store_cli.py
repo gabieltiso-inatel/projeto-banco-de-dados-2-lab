@@ -3,6 +3,7 @@ from cli.cli import SimpleCLI
 from models.distribution_center import DistributionCenter
 from models.parts_store import PartsStore
 from models.part import Part
+from utils import print_record_fields
 
 class PartsStoreCLI(SimpleCLI):
     def __init__(self, parts_store_model: PartsStore, distribution_center_model: DistributionCenter, parts_model: Part):
@@ -33,34 +34,38 @@ class PartsStoreCLI(SimpleCLI):
         parts_stores = self.parts_store_model.get_all_parts_stores()
         print("All Parts Stores:")
         for parts_store in parts_stores:
-            print(parts_store)
+            print_record_fields(parts_store)
 
     def get_parts_store_by_name(self):
         name = input("Enter PartsStore name: ")
         parts_store = self.parts_store_model.get_parts_store_by_name(name)
         print("PartsStore details:")
-        print(parts_store)
+        if len(parts_store) > 0:
+            print_record_fields(parts_store)
 
     def update_parts_store_city(self):
         name = input("Enter PartsStore name: ")
         new_city = input("Enter new city: ")
         updated_parts_store = self.parts_store_model.update_parts_store_city(name, new_city)
         print("Updated PartsStore:")
-        print(updated_parts_store)
+        if len(updated_parts_store) > 0:
+            print_record_fields(updated_parts_store[0])
 
     def update_parts_store_delivers(self):
         name = input("Enter PartsStore name: ")
         new_delivers = input("Enter new delivers status (True/False): ")
         updated_parts_store = self.parts_store_model.update_parts_store_delivers(name, new_delivers)
         print("Updated PartsStore:")
-        print(updated_parts_store)
+        if len(updated_parts_store) > 0:
+            print_record_fields(updated_parts_store[0])
 
     def update_parts_store_rating(self):
         name = input("Enter PartsStore name: ")
         new_rating = float(input("Enter new average rating: "))
         updated_parts_store = self.parts_store_model.update_parts_store_rating(name, new_rating)
         print("Updated PartsStore:")
-        print(updated_parts_store)
+        if len(updated_parts_store) > 0:
+            print_record_fields(updated_parts_store[0])
 
     def delete_parts_store(self):
         name = input("Enter PartsStore name: ")

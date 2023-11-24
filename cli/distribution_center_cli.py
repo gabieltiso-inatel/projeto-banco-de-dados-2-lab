@@ -2,6 +2,7 @@ from cli.cli import SimpleCLI
 
 from models.distribution_center import DistributionCenter
 from models.part import Part
+from utils import print_record_fields
 
 class DistributionCenterCLI(SimpleCLI):
     def __init__(self, distribution_center_model: DistributionCenter, parts_model: Part):
@@ -29,34 +30,37 @@ class DistributionCenterCLI(SimpleCLI):
         distribution_centers = self.distribution_center_model.get_all_distribution_centers()
         print("All Distribution Centers:")
         for distribution_center in distribution_centers:
-            print(distribution_center)
+            print_record_fields(distribution_center)
 
     def get_all_distribution_centers_by_city(self):
         city = input("Enter city: ")
         distribution_centers = self.distribution_center_model.get_all_distribution_centers_by_city(city)
         print(f"Distribution Centers in {city}:")
         for distribution_center in distribution_centers:
-            print(distribution_center)
+            print_record_fields(distribution_center)
 
     def get_distribution_center_by_name(self):
         name = input("Enter DistributionCenter name: ")
         distribution_center = self.distribution_center_model.get_distribution_center_by_name(name)
         print("DistributionCenter details:")
-        print(distribution_center)
+        if len(distribution_center) > 0:
+            print_record_fields(distribution_center[0])
 
     def update_distribution_center_city(self):
         name = input("Enter DistributionCenter name: ")
         new_city = input("Enter new city: ")
         updated_distribution_center = self.distribution_center_model.update_distribution_center_city(name, new_city)
         print("Updated DistributionCenter:")
-        print(updated_distribution_center)
+        if len(updated_distribution_center) > 0:
+            print_record_fields(updated_distribution_center[0])
 
     def update_distribution_center_average_delivery_time(self):
         name = input("Enter DistributionCenter name: ")
         new_avg_time = int(input("Enter new average delivery time in days: "))
         updated_distribution_center = self.distribution_center_model.update_distribution_center_average_delivery_time_in_days(name, new_avg_time)
         print("Updated DistributionCenter:")
-        print(updated_distribution_center)
+        if len(updated_distribution_center) > 0:
+            print_record_fields(updated_distribution_center[0])
 
     def delete_distribution_center(self):
         name = input("Enter DistributionCenter name: ")

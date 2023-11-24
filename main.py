@@ -17,28 +17,12 @@ from models.part import Part
 
 def main():
     load_dotenv()
-    #clear_screen()
-    #print("""
-###############################################################
-#Welcome to the car parts analyser program!
-#This project allows you to interact with four main entities 
-#in a Graph Database (Neo4j):
-
-#- Manufacturer
-#- DistributionCenter
-#- PartsStore
-#- Part
-
-#You can choose between the entities, and apply all kinds 
-#of CRUD operations on all of them.
-###############################################################
-#""")
 
     db_uri = os.getenv("DB_URI")
     db_user = os.getenv("DB_USER")
     db_password = os.getenv("DB_PASSWORD")
     database = Database(db_uri, db_user, db_password)
-    database.drop_all()
+    # database.drop_all()
 
     while True:
         clear_screen()
@@ -85,8 +69,6 @@ Or press 5 to exit!
 
         if cli:
             cli.run()
-
-        clear_screen()
 
 if __name__ == "__main__":
     main()

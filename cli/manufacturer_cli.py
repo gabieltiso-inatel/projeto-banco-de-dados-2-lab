@@ -2,6 +2,7 @@ from cli.cli import SimpleCLI
 
 from models.manufacturer import Manufacturer
 from models.part import Part
+from utils import print_record_fields
 
 class ManufacturerCLI(SimpleCLI):
     def __init__(self, manufacturer_model: Manufacturer, parts_model: Part):
@@ -31,41 +32,45 @@ class ManufacturerCLI(SimpleCLI):
         manufacturers = self.manufacturer_model.get_all_manufacturers()
         print("All Manufacturers:")
         for manufacturer in manufacturers:
-            print(manufacturer)
+            print_record_fields(manufacturer)
 
     def get_all_manufacturer_by_city(self):
         city = input("Enter city: ")
         manufacturers = self.manufacturer_model.get_all_manufacturer_by_city(city)
         print(f"Manufacturers in {city}:")
         for manufacturer in manufacturers:
-            print(manufacturer)
+            print_record_fields(manufacturer)
 
     def get_manufacturer_by_name(self):
         name = input("Enter Manufacturer name: ")
         manufacturer = self.manufacturer_model.get_manufacturer_by_name(name)
         print("Manufacturer details:")
-        print(manufacturer)
+        if len(manufacturer) > 0:
+            print_record_fields(manufacturer[0])
 
     def update_manufacturer_city(self):
         name = input("Enter Manufacturer name: ")
         new_city = input("Enter new city: ")
         updated_manufacturer = self.manufacturer_model.update_manufacturer_city(name, new_city)
         print("Updated Manufacturer:")
-        print(updated_manufacturer)
+        if len(updated_manufacturer) > 0:
+            print_record_fields(updated_manufacturer[0])
 
     def update_manufacturer_year_of_foundation(self):
         name = input("Enter Manufacturer name: ")
         new_year = int(input("Enter new year of foundation: "))
         updated_manufacturer = self.manufacturer_model.update_manufacturer_year_of_foundation(name, new_year)
         print("Updated Manufacturer:")
-        print(updated_manufacturer)
+        if len(updated_manufacturer) > 0:
+            print_record_fields(updated_manufacturer[0])
 
     def update_manufacturer_telephone(self):
         name = input("Enter Manufacturer name: ")
         new_telephone = input("Enter new telephone: ")
         updated_manufacturer = self.manufacturer_model.update_manufacturer_telephone(name, new_telephone)
         print("Updated Manufacturer:")
-        print(updated_manufacturer)
+        if len(updated_manufacturer) > 0:
+            print_record_fields(updated_manufacturer[0])
 
     def delete_manufacturer(self):
         name = input("Enter Manufacturer name: ")

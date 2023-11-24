@@ -13,6 +13,7 @@ class SimpleCLI:
 
     def run(self):
         while True:
+            clear_screen()
             print("Supported commands: ")
             for i, command in enumerate(self.commands):
                 print(f"{i}) {command[0]}")
