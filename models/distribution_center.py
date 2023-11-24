@@ -1,4 +1,3 @@
-import neo4j
 from database import Database
 
 class DistributionCenter:
