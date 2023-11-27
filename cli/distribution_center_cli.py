@@ -18,6 +18,7 @@ class DistributionCenterCLI(SimpleCLI):
         self.add_command(("update_distribution_center_average_delivery_time", self.update_distribution_center_average_delivery_time))
         self.add_command(("delete_distribution_center", self.delete_distribution_center))
         self.add_command(("create_stores_part_rel", self.create_stores_part_rel))
+        self.add_command(("get_all_parts_stored", self.get_all_parts_stored))
 
     def create_distribution_center(self):
         name = input("Enter DistributionCenter name: ")
@@ -72,6 +73,14 @@ class DistributionCenterCLI(SimpleCLI):
         part_name = input("Enter Part name: ")
         self.distribution_center_model.create_distribution_center_stores_part_rel(dc_name, part_name)
         print("Relationship created: DistributionCenter stores Part")
+
+    def get_all_parts_stored(self):
+        dc_name = input("Enter DistributionCenter name: ")
+        parts_from_distribution_center = self.distribution_center_model.get_all_parts_stored(dc_name)
+        if len(parts_from_distribution_center) > 0:
+            print("All parts from DistributionCenter: ")
+            for part in parts_from_distribution_center:
+                print_record_fields(part)
 
     def run(self):
         print("Welcome to the Distribution Center CLI!")

@@ -59,3 +59,11 @@ class Manufacturer:
         """
         parameters = {"manuf_name": manufacturer_name, "part_name": part_name}
         self.db.execute_query(query, parameters)
+
+    def get_all_parts_made(self, manufacturer_name):
+        query = """
+        MATCH (m:Manufacturer {name: $manufacturer_name})-[:PRODUCES]->(p:Part)
+        RETURN p
+            """
+        parameters = {"manufacturer_name": manufacturer_name}
+        return self.db.execute_query(query, parameters)

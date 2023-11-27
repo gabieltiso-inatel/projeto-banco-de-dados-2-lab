@@ -19,6 +19,7 @@ class ManufacturerCLI(SimpleCLI):
         self.add_command(("update_manufacturer_telephone", self.update_manufacturer_telephone))
         self.add_command(("delete_manufacturer", self.delete_manufacturer))
         self.add_command(("create_produces_part_rel", self.create_produces_part_rel))
+        self.add_command(("get_all_parts_made", self.get_all_parts_made))
 
     def create_manufacturer(self):
         name = input("Enter Manufacturer name: ")
@@ -82,6 +83,14 @@ class ManufacturerCLI(SimpleCLI):
         part_name = input("Enter Part name: ")
         self.manufacturer_model.create_manufacturer_produces_part_rel(manufacturer_name, part_name)
         print("Relationship created: Manufacturer produces Part")
+
+    def get_all_parts_made(self):
+        manufacturer_name = input("Enter Manufacturer name: ")
+        parts = self.manufacturer_model.get_all_parts_made(manufacturer_name)
+        if len(parts) > 0: 
+            print("All parts made by manufacturer")
+            for part in parts:
+                print_record_fields(part)
 
     def run(self):
         print("Welcome to the Manufacturer CLI!")

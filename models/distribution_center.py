@@ -49,3 +49,11 @@ class DistributionCenter:
         """
         parameters = {"name": dc_name, "part_name": part_name}
         return self.db.execute_query(query, parameters)
+
+    def get_all_parts_stored(self, dc_name):
+        query = """
+        MATCH (dc:DistributionCenter {name: $dc_name})-[:STORES]->(p:Part)
+        RETURN p
+        """
+        parameters = {"dc_name": dc_name}
+        return self.db.execute_query(query, parameters)

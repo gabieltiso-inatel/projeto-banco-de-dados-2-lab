@@ -21,6 +21,8 @@ class PartsStoreCLI(SimpleCLI):
         self.add_command(("delete_parts_store", self.delete_parts_store))
         self.add_command(("create_buys_from_dc_rel", self.create_buys_from_dc_rel))
         self.add_command(("create_sells_part_rel", self.create_sells_part_rel))
+        self.add_command(("get_all_parts_sold", self.get_all_parts_sold))
+        self.add_command(("get_all_distribution_centers_bought_from", self.get_all_distribution_centers_bought_from))
 
     def create_parts_store(self):
         name = input("Enter PartsStore name: ")
@@ -83,6 +85,22 @@ class PartsStoreCLI(SimpleCLI):
         part_name = input("Enter Part name: ")
         self.parts_store_model.create_parts_store_sells_part_rel(parts_store_name, part_name)
         print("Relationship created: PartsStore sells Part")
+
+    def get_all_parts_sold(self):
+        parts_store_name = input("Enter PartsStore name: ")
+        parts = self.parts_store_model.get_all_parts_sold(parts_store_name)
+        if len(parts) > 0:
+            print("All parts sold by store")
+            for part in parts: 
+                print_record_fields(part)
+
+    def get_all_distribution_centers_bought_from(self):
+        parts_store_name = input("Enter PartsStore name: ")
+        dcs = self.parts_store_model.get_all_distribution_centers_bought_from(parts_store_name)
+        if len(dcs) > 0:
+            print("All distribution centers the store buys from")
+            for dc in dcs:
+                print_record_fields(dc)
 
     def run(self):
         print("Welcome to the Parts Store CLI!")

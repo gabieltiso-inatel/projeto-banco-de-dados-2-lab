@@ -59,3 +59,19 @@ class PartsStore:
         )
         parameters = {"parts_store_name": parts_store_name, "part_name": part_name}
         self.db.execute_query(query, parameters)
+    
+    def get_all_parts_sold(self, parts_store_name):
+        query = """
+        MATCH (ps:PartsStore {name: $parts_store_name})-[:SELLS]->(p:Part)
+        RETURN p
+        """
+        parameters = {"parts_store_name": parts_store_name}
+        return self.db.execute_query(query, parameters)
+
+    def get_all_distribution_centers_bought_from(self, parts_store_name):
+        query = """
+        MATCH (ps:PartsStore {name: $parts_store_name})-[:BUYS_FROM]->(dc:DistributionCenter)
+        RETURN dc
+        """
+        parameters = {"parts_store_name": parts_store_name}
+        return self.db.execute_query(query, parameters)
