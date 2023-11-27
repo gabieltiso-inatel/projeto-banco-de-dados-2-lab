@@ -43,7 +43,7 @@ class PartsStoreCLI(SimpleCLI):
         parts_store = self.parts_store_model.get_parts_store_by_name(name)
         print("PartsStore details:")
         if len(parts_store) > 0:
-            print_record_fields(parts_store)
+            print_record_fields(parts_store[0])
 
     def update_parts_store_city(self):
         name = input("Enter PartsStore name: ")
